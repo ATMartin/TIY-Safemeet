@@ -11,8 +11,15 @@ export default Ember.Component.extend({
       ),
       zoom: 7
     };
-    new window.google.maps.Map(container[0], options);
+    this.set('map', new window.google.maps.Map(container[0], options));
+    var self = this;
+    window.google.maps.event.addListener(this.get('map'), 'click', function(e) {
+      self.sendAction('action', e.latLng);
+    });
   }.on('didInsertElement'),
+  shout: function() {
+    console.log('');
+  }.observes('map'),
 
   
   
