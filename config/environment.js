@@ -12,10 +12,19 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
+    sassOptions: { outputFile: "safemeet.css" },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' * https://maps.gstatic.com https://maps.googleapis.com 'unsafe-eval'",
+      'font-src': "'self' *",
+      'connect-src': "'self' *",
+      'img-src': "'self' *",
+      'style-src': "'self' 'unsafe-inline' *",
+      'media-src': "'self' *"
     }
   };
 

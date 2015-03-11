@@ -1,0 +1,5 @@
+<h2>Lat is {{model.lat}}</h2>
+<h2>Long is {{model.long}}</h2>
+{{google-maps lat=model.lat long=model.long }}
+<button {{action "logData"}}>Log It</button>
+{{outlet}}

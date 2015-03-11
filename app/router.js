@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('map', { path: '/map/:lat/:long' });
+  this.resource('loc', { path: '/loc' });
+
 });
 
 export default Router;
