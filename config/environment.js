@@ -25,9 +25,12 @@ module.exports = function(environment) {
       'img-src': "'self' *",
       'style-src': "'self' 'unsafe-inline' *",
       'media-src': "'self' *"
+    },
+    'simple-auth': {
+      authenticationRoute: 'user/login'
     }
   };
-
+  
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
