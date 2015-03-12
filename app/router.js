@@ -13,6 +13,11 @@ Router.map(function() {
     this.route('view', { path: '/:loc_id' });
   });
 
+  this.resource('user', function() {
+    this.route('new');
+    this.route('edit');
+    this.route('profile');
+  });
 });
 
 export default Router;
