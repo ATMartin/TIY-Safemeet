@@ -1,5 +1,5 @@
 <h2>New Location...</h2>
-<h3>Last clicked: ({{newLoc.location.latitude}}, {{newLoc.location.longitude}})</h3>
+<h3>Last clicked: ({{newLoc.loc.latitude}}, {{newLoc.loc.longitude}})</h3>
 
 <form {{action "saveNewLocation" on="submit"}}>
 {{input value=newLoc.name placeholder="Name"}}
@@ -10,7 +10,7 @@
 <br>
 <span>Click the map to set the location:</span>
 
-{{google-maps lat=newLoc.location.latitude long=newLoc.location.longitude action='updateLoc'}}
+{{google-maps lat=newLoc.loc.latitude long=newLoc.loc.longitude action='updateLoc'}}
 <button {{action "saveNewLocation"}}>Go!</button>
 </form>
 

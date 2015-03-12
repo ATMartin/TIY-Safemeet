@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   find: function(context, id) {
-    var adapter = this.container.lokup('adapter:' + context);
+    var adapter = this.container.lookup('adapter:' + context);
     return adapter.find(context, id);
   },
 
@@ -22,7 +22,12 @@ export default Ember.Service.extend({
   },
 
   update: function(context, object) {
-    var adapter = this.container.looup('adapter:' + context);
+    var adapter = this.container.lookup('adapter:' + context);
     return adapter.update(context, object);
+  },
+
+  destroy: function(context, object) {
+    var adapter = this.container.lookup('adapter:' + context);
+    return adapter.destroy(context, object);
   }
 });

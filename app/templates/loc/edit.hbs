@@ -1,1 +1,15 @@
+<h3>Edit Location</h3>
+{{input value=model.name}}
+<br>
+{{textarea value=model.description}}
+<br>
+<span>Features:</span>
+<p>Current Lat & Long (click map to change)</p>
+Lat: {{input value=model.loc.latitude}}
+Long: {{input value=model.loc.longitude}}
+{{google-maps lat=model.loc.latitude long=model.loc.longitude action="updateLoc"}}
+<button {{action "updateLocation"}}>Save Changes</button>
+<button {{action "gotoIndex"}}>Discard Changes</button>
+<br>
+<button {{action "deleteLocation"}}>Delete This Location</button>
 {{outlet}}

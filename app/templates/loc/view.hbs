@@ -1,1 +1,9 @@
+
+<h2>{{model.name}}</h2>
+<p>{{model.description}}</p>
+<h3>Features:</h3>
+<br>
+<br>
+{{google-maps lat=model.loc.latitude long=model.loc.longitude }}
+<button {{action "gotoEdit"}}>Edit This Location</button>
 {{outlet}}
