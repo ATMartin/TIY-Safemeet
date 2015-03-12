@@ -26,7 +26,7 @@ export default Ember.Object.extend({
 
   push: function(parseClass, object) {
     return ajax({
-      url: "https://api.parse.com/1/classes" + parseClass + "/",
+      url: "https://api.parse.com/1/classes/foo/" + parseClass + "/",
       type: "POST",
       data: JSON.stringify(object)
     })
