@@ -9,19 +9,28 @@ export default Ember.Component.extend({
         this.get("lat"),
         this.get("long")
       ),
-      zoom: 7
+      zoom: 12
     };
     this.set('map', new window.google.maps.Map(container[0], options));
+    if (this.get("marked")) {
+      this.set('marker', new window.google.maps.Marker({
+          position: new window.google.maps.LatLng(
+            this.get('lat'),
+            this.get('long')
+          ),
+          map: this.get('map')
+        })
+      );  
+    }
     var self = this;
     window.google.maps.event.addListener(this.get('map'), 'click', function(e) {
-      self.sendAction('action', e.latLng);
+      if (self.get('marker') && self.get('canEdit')) { 
+        self.get('marker').setMap(null);
+        self.set('marker', null);
+      }
+      self.sendAction('action', e.latLng, self.get('map'));
     });
   }.on('didInsertElement'),
-  shout: function() {
-    console.log('');
-  }.observes('map'),
-
-  
   
   layout: layout
 });

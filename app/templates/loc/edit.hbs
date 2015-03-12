@@ -7,7 +7,7 @@
 <p>Current Lat & Long (click map to change)</p>
 Lat: {{input value=model.loc.latitude}}
 Long: {{input value=model.loc.longitude}}
-{{google-maps lat=model.loc.latitude long=model.loc.longitude action="updateLoc"}}
+{{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true canEdit=true action="updateLocWithMarker"}}
 <button {{action "updateLocation"}}>Save Changes</button>
 <button {{action "gotoIndex"}}>Discard Changes</button>
 <br>

@@ -2,11 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   oldModel: {},
+  marker: {
+    setMap: function() {}
+  },
   actions: {
-    updateLoc: function(latLng) {
+    updateLocWithMarker: function(latLng, map) {
       console.log(latLng);
       this.set('model.loc.latitude', latLng.k);  
       this.set('model.loc.longitude', latLng.D);
+      this.get('marker').setMap(null);
+      this.set('marker', new window.google.maps.Marker({
+        position: new window.google.maps.LatLng(
+          latLng.k,
+          latLng.D
+        ),
+        map: map
+      }));
     },
     updateLocation: function() {
       this.parse.update('Location', this.get('model'));

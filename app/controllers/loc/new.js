@@ -11,11 +11,21 @@ export default Ember.Controller.extend({
       longitude: -84
     }
   },
+  marker: {
+    setMap: function() {}  
+  },
   actions: {
-    updateLoc: function(latLng) {
+    updateLocWithMarker: function(latLng, map) {
       console.log(latLng);
+      console.log(map);
       this.set('newLoc.loc.latitude', latLng.k);
       this.set('newLoc.loc.longitude', latLng.D);
+      this.get('marker').setMap(null);
+      this.set('marker', new window.google.maps.Marker({
+        position: new window.google.maps.LatLng(latLng.k, latLng.D),
+        map: map  
+      }));
+      console.log(this.get('marker'));
     },
     saveNewLocation: function() {
       console.log(this.get('newLoc'));
