@@ -10,5 +10,10 @@
 
 {{outlet}}
 <footer>
+  {{#if session.isAuthenticated}}
+    <a {{action "invalidateSession"}} href="javascript:void(0)">Logout</a>
+  {{else}}
+    {{link-to "Login" 'user.login'}}
+  {{/if}}
   Made 2015 by Alex
 </footer>

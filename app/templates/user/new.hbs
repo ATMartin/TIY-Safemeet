@@ -1,1 +1,13 @@
+<h2>New User</h2>
+<form {{action 'createUser' on='submit'}}>
+  {{input value=user.email placeholder='Email Address' type='email'}}
+  <br>
+  {{input value=user.password placeholder='Password' type='password'}}
+  <br>
+  {{input placeholder='Confirm Password' type='password'}}
+  <br>
+  <button type="submit">Create User</button>
+</form>
+
+
 {{outlet}}

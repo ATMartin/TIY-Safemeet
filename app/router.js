@@ -13,10 +13,11 @@ Router.map(function() {
     this.route('view', { path: '/:loc_id' });
   });
 
-  this.resource('user', function() {
+  this.resource('user',{ path: '/user'}, function() {
     this.route('new');
-    this.route('edit');
-    this.route('profile');
+    this.route('edit', { path: '/edit/:user_id' });
+    this.route('profile', { path: '/:user_id' });
+    this.route('login');
   });
 });
 
