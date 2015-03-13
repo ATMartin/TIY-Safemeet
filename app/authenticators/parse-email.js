@@ -6,7 +6,7 @@ export default Base.extend({
   sessionToken: null,
   
   restore: function(data) {
-    this.set('sessionToken', data.sesstionToken);
+    this.set('sessionToken', data.sessionToken);
     return ajax('https://api.parse.com/1/users/me');  
   },
 
