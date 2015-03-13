@@ -11,14 +11,14 @@ export default Ember.Service.extend({
   getLoc: function() {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function() {
-          resolve("Got the loc!");
+        navigator.geolocation.getCurrentPosition(function(data) {
+          resolve(data.coords);
         },
         function() {
-          reject("Refused  geoloc!"); 
+          reject("Refused geoloc!"); 
         }); 
       } else {
-        reject ("No geoloc!");
+        reject("No geoloc support!");
       } 
     });
   },
