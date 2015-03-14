@@ -23,6 +23,29 @@ export default Ember.Object.extend({
       });
     });
   },
+  
+  findAllByDistance: function(parseClass, center, distance) {
+    console.log(center);
+    var request = {
+      "loc": {
+        "$nearSphere": {
+          "__type": "GeoPoint",
+          "latitude": center.latitude,
+          "longitude": center.longitude
+        },
+        "$maxDistanceInMiles": parseFloat(distance)
+      }
+    };
+
+    return ajax({
+      url: "https://api.parse.com/1/classes/" + parseClass,
+      type: "GET",
+      data: "where=" + encodeURIComponent(JSON.stringify(request))
+    })
+    .then(function(data) {
+      console.log(data);  
+    });
+  },
 
   push: function(parseClass, object) {
     return ajax({
