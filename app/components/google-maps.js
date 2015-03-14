@@ -2,6 +2,7 @@ import Ember from 'ember';
 import layout from '../templates/components/google-maps';
 
 export default Ember.Component.extend({
+  map: {},
   insertMap: function() {
     var container = this.$('.map-canvas');
     var options = {
@@ -31,6 +32,10 @@ export default Ember.Component.extend({
       self.sendAction('action', e.latLng, self.get('map'));
     });
   }.on('didInsertElement'),
-  
+  triggerRedraw: function() {
+    //var myMap = this.get('map');
+    //window.google.maps.event.trigger(myMap, 'resize');
+    this.insertMap();
+  }.observes('lat', 'long'),
   layout: layout
 });

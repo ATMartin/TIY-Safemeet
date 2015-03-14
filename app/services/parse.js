@@ -16,6 +16,11 @@ export default Ember.Service.extend({
     return adapter.findAllByUser(context, user); 
   },
 
+  findAllByDistance: function(context, center, distance) {
+    var adapter = this.container.lookup('adapter:' + context);
+    return adapter.findAllByDistance(context, center, distance);
+  },
+
   push: function(context, object) {
     var adapter = this.container.lookup('adapter:' + context);
     return adapter.push(context, object);
