@@ -43,7 +43,7 @@ export default Ember.Object.extend({
       data: "where=" + encodeURIComponent(JSON.stringify(request))
     })
     .then(function(data) {
-      console.log(data);  
+      return data;
     });
   },
 
@@ -65,7 +65,6 @@ export default Ember.Object.extend({
       data: JSON.stringify(object)
     })
     .then(function(data){
-      console.log(data);
       return data;
     });
   },
@@ -76,7 +75,6 @@ export default Ember.Object.extend({
       type: "DELETE"
     })
     .then(function(data) {
-      console.log(data);
       return data;  
     });
   }
