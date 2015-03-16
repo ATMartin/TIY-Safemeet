@@ -16,5 +16,8 @@ export default Ember.Controller.extend({
     return locations;
   },
   actions: {
+    test: function() {
+      console.log(this.session);
+    }
   }
 });
