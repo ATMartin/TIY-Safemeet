@@ -7,7 +7,6 @@ model: function() {
     function(coords) { 
       return self.parse.findAllByDistance('Location', coords, '30')
       .then(function(locs) {
-        //console.log(coords);
         locs.results.forEach(function(loc) {
           loc.distance = self.geolocator.distanceBetween(coords, loc.loc);
         });
