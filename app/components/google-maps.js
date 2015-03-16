@@ -14,12 +14,14 @@ export default Ember.Component.extend({
     };
     this.set('map', new window.google.maps.Map(container[0], options));
     if (this.get("marked")) {
+      var icon = 'assets/img/safemeet-logo.png'; 
       this.set('marker', new window.google.maps.Marker({
           position: new window.google.maps.LatLng(
             this.get('lat'),
             this.get('long')
           ),
-          map: this.get('map')
+          map: this.get('map'),
+          icon: icon
         })
       );  
     }
