@@ -1,18 +1,35 @@
-<h2>New Location...</h2>
-<h3>Last clicked: ({{newLoc.loc.latitude}}, {{newLoc.loc.longitude}})</h3>
+<div class="loc-view">
+  <div class="data panel">
+    <h2>New Location:</h2>
+    <form {{action "saveNewLocation" on="submit"}}>
+      <label>Location Name:</label>
+      {{input value=newLoc.name placeholder="Mcdonald's, Parking Lot"}}
+      <br>
+      <label>Description</label>
+      {{textarea value=newLoc.description placeholder="Tell us a little about this location..."}}
+      <br>
+      <label>Features:</label>
+      <div class="panelbox">
+      <label>
+        {{input type='checkbox' checked=newLoc.features.24hr name="24hr"}} 24 hour?
+        <br>
+        {{input type='checkbox' checked=newLoc.features.indoor name="indoor"}} Indoor Seating?
+        <br>
+        {{input type='checkbox' checked=newLoc.features.power name="power"}} Power available?
+      </label>
+      </div>
+      <br>
+      <label>Location:</label>
+      <br>
+      <button {{action "loadMyLoc"}}>Use my current location</button>
+      <button {{action "loadMapLoc"}}>Use the map's location</button>
+      <br><br>
+      <button type="submit">Add To Safemeet</button>
+    </form>
+  </div>
 
-<form {{action "saveNewLocation" on="submit"}}>
-{{input value=newLoc.name placeholder="Name"}}
-<br>
-{{textarea value=newLoc.description placeholder="Description"}}
-<br>
-<label>Features:</label>
-<br>
-<span>Click the map to set the location:</span>
-
-{{google-maps lat=newLoc.loc.latitude long=newLoc.loc.longitude action='updateLocWithMarker'}}
-<button {{action "saveNewLocation"}}>Go!</button>
-</form>
-
-
+  <div class="map-new">
+    {{google-maps lat=newLoc.loc.latitude long=newLoc.loc.longitude marked=true canEdit=true action='updateLocWithMarker'}}
+  </div>
+</div>
 {{outlet}}

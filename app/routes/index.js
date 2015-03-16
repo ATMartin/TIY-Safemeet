@@ -4,10 +4,18 @@ export default Ember.Route.extend({
 model: function() {
   var self = this;
   return this.geolocator.getLoc().then(
-    function(data) { 
-      console.log(data);
-      self.parse.findAllByDistance('Location', data, '30');
-      return data;
+    function(coords) { 
+      return self.parse.findAllByDistance('Location', coords, '30')
+      .then(function(locs) {
+        //console.log(coords);
+        locs.results.forEach(function(loc) {
+          loc.distance = self.geolocator.distanceBetween(coords, loc.loc);
+        });
+        return {
+          coords: coords,
+          nearbyLocations: locs.results
+        };
+      });
     }, 
     function(err) { 
       console.log("ERR!"); 
@@ -20,11 +28,10 @@ model: function() {
 },
 setupController: function(controller, model) { 
   if (model) {
-    console.log(model);
-    controller.set('loc', model);
-    controller.set('latitude', model.latitude);
-    controller.set('longitude', model.longitude);
+    controller.set('loc', model.coords);
+    controller.set('nearbyLocations', model.nearbyLocations);
+    //controller.set('latitude', model.latitude);
+    //controller.set('longitude', model.longitude);
   }
 }
-
 });

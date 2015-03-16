@@ -28,9 +28,13 @@ export default Ember.Controller.extend({
       console.log(this.get('marker'));
     },
     saveNewLocation: function() {
+      var self = this;
       console.log(this.get('newLoc'));
-      this.parse.push("Location", this.get('newLoc'));
-      //this.transitionToRoute('loc.view', this.get('model'));
+      this.parse.push("Location", this.get('newLoc')).then(function(data) {
+        self.parse.find('Location', data.objectId).then(function(loc) {
+          self.transitionToRoute('loc.view', loc);    
+        });
+      });
     }
   }
 });

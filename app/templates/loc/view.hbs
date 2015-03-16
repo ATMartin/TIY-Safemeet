@@ -1,9 +1,35 @@
+<div class="loc-view">
+  <div class="data panel">
+    <h2>{{model.name}}</h2>
+    <h4>Description</h4>
+    <p>{{model.description}}</p>
+    <br>
+    <h4>Features:</h4>
+    <div class="panelbox">
+    <label>
+      {{input type='checkbox' checked=feature24Hr name="24hr"}} 24 hour?
+      <br>
+      {{input type='checkbox' checked=featureSeating  name="indoor"}} Indoor Seating?
+      <br>
+      {{input type='checkbox' checked=newLoc.features.power name="power"}} Power available?
+    </label>
+    </div>
+    <br>
+    <h4>Location:</h4>
+    <br>
+    <p>Location Info (address?)</p>
+    <br><br>
+    <button {{action "gotoEdit"}}>Edit This Location</button>
+    {{#if session.isAuthenticated }}
+      <br>
+      <button {{action "likeLocation"}}>Like This Location</button>
+      <br>
+      <button {{action "reportLocation"}}>Report This Location</button>
+    {{/if}}
+  </div>
 
-<h2>{{model.name}}</h2>
-<p>{{model.description}}</p>
-<h3>Features:</h3>
-<br>
-<br>
-{{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
-<button {{action "gotoEdit"}}>Edit This Location</button>
+  <div class="map-new">
+    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
+  </div>
+</div>
 {{outlet}}

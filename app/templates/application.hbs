@@ -1,8 +1,11 @@
+<div class="container">
+
 <header>
-  <h2 id="title">Safemeet</h2>
+  {{#link-to 'index'}}<h2 id="title">Safemeet</h2>{{/link-to}}
 </header>
 
 {{outlet}}
+
 <footer>
   {{#if session.isAuthenticated}}
     <a {{action "invalidateSession"}} href="javascript:void(0)">Logout</a>
@@ -11,3 +14,5 @@
   {{/if}}
   Made 2015 by Alex
 </footer>
+
+</div>

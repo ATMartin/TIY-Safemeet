@@ -1,9 +1,30 @@
-{{outlet "menu"}}
+<div class="menu panel">
+  <ul>
+  {{#if session.isAuthenticated}}
+  <li>{{link-to "Profile" 'user.new'}}</li>
+  {{else}}
+  <li>{{link-to "Login" 'user.login'}}</li>
+  {{/if}}
+  <li>{{link-to "New..." 'loc.new'}} </li>
+  </ul>
+</div>
 
-{{outlet "map"}}
+<div class="map panel">
+  {{google-maps lat=loc.latitude long=loc.longitude}}
+</div>
 
-{{outlet "locations"}}
-
-{{google-maps lat=loc.latitude long=loc.longitude}}
+<div class="locations panel">
+  <ul>
+  {{#each location in nearbyLocations}}
+    <li>
+      {{#link-to 'loc.view' location}}
+        <h2>{{location.name}}</h2>
+      {{/link-to}}
+      <p>{{location.distance}} miles</p>
+      <p>{{location.description}}</p>
+    </li>
+  {{/each}}
+  </ul>
+</div>
 
 {{outlet}}
