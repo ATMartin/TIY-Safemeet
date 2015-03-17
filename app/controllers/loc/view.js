@@ -6,13 +6,16 @@ export default Ember.Controller.extend({
   }.property('model.features'),
   
   featureSeating: function() {
-    return this.get('model.features').indexOf("seating") > -1 ? true : false;
+    return (this.get('model.features').indexOf("seating") > -1);
   }.property('model.features'),
-
+  
+  featurePower: function() {
+    return (this.get('model.features').indexOf("power") > -1);
+  }.property('model.features'),
   // It appears the following won't work to DRY this code up.
   // BOOOO, Handlebars limitations. :(
   hasFeature: function(feature) {
-    return this.get('model.features').indexOf(feature) > -1 ? true : false;
+    return (this.get('model.features').indexOf(feature) > -1);
   }.property('model.features'),
   
   actions: {

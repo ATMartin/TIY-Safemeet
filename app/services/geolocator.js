@@ -22,7 +22,31 @@ export default Ember.Service.extend({
       } 
     });
   },
-    // Stolen from Parse JS SDK
+  getCurrentZip: function() {
+    alert('Not yet implemented!');
+    /*
+    var geocoder = new window.google.maps.Geocoder();
+    var latlng;
+    return this.getLoc().then(function(coords) {
+      latlng = new window.google.maps.LatLng(coords.latitude, coords.longitude);
+    }).finally(function() { 
+      return geocoder.geocode({'latLng': latlng}, function(results) {
+        return true;
+      });
+    });
+    /*
+      geocoder.geocode({'latLng': new window.google.maps.LatLng(coords.latitude, coords.longitude)}, function(results) {
+        results[0].address_components.forEach(function(component) {
+          if (component.types[0] === "postal_code") {
+            return component.long_name;
+          }
+        });
+      });
+      
+    });
+    */
+  },
+    // Adapted from Parse JS SDK
     // Credit to https://parse.com/downloads/javascript/parse-1.3.5.js
   distanceBetween: function(point1, point2) {
     var d2r = Math.PI / 180.0;

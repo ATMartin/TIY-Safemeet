@@ -1,20 +1,22 @@
 <div class="menu panel">
   <ul>
   {{#if session.isAuthenticated}}
-  <li>{{link-to "Profile" 'user.new'}}</li>
+  <li>{{link-to "Profile" 'user.profile' session.currentUser}}</li>
   {{else}}
   <li>{{link-to "Login" 'user.login'}}</li>
   {{/if}}
   <li>{{link-to "New..." 'loc.new'}} </li>
+  <li><<button {{action "test"}}>Test Action</button></li>
   </ul>
 </div>
 
 <div class="map panel">
-  {{google-maps lat=loc.latitude long=loc.longitude}}
+  {{google-maps lat=loc.latitude long=loc.longitude marked=true loc-list=nearbyLocations}}
 </div>
 
 <div class="locations panel">
   <ul>
+  {{#if nearbyLocations.length }}
   {{#each location in nearbyLocations}}
     <li>
       {{#link-to 'loc.view' location}}
@@ -24,6 +26,12 @@
       <p>{{location.description}}</p>
     </li>
   {{/each}}
+  {{else}}
+    <h2>No Safemeet locations nearby.</h2>
+    {{#link-to 'loc.new'}}
+      <h2>Why not add some?</h2>
+    {{/link-to}}
+  {{/if}}
   </ul>
 </div>
 
