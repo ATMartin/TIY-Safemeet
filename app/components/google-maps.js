@@ -11,7 +11,7 @@ export default Ember.Component.extend({
         this.get("lat"),
         this.get("long")
       ),
-      zoom: 12
+      zoom: 15
     };
     this.set('map', new window.google.maps.Map(container[0], options));
     if (this.get("marked")) {

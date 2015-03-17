@@ -11,6 +11,11 @@ export default Ember.Controller.extend({
       longitude: -84
     }
   },
+  
+  feature24Hr: false,
+  featureSeating: false,
+  featurePower: false,
+
   marker: {
     setMap: function() {}  
   },
@@ -27,8 +32,12 @@ export default Ember.Controller.extend({
     },
     saveNewLocation: function() {
       var self = this;
+      if (this.feature24Hr) { this.get('newLoc.features').push('24hr'); }
+      if (this.featureSeating) { this.get('newLoc.features').push('seating'); }
+      if (this.featurePower) { this.get('newLoc.features').push('power'); }
+
       console.log(this.get('newLoc'));
-      this.parse.push("Location", this.get('newLoc')).then(function(data) {
+      this.parse.push('Location', this.get('newLoc')).then(function(data) {
         self.parse.find('Location', data.objectId).then(function(loc) {
           self.transitionToRoute('loc.view', loc);    
         });

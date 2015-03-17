@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function() {
-    
+  model: function() { 
     return this.geolocator.getLoc().then(function(coords) {
       return coords;
     });
@@ -10,7 +9,8 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model) {
     if (model) {
-      controller.set('newLoc.loc', model);
+      controller.set('newLoc.loc.latitude', model.latitude);
+      controller.set('newLoc.loc.longitude', model.longitude);
     }
   }
 });
