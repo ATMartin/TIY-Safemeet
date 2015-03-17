@@ -3,6 +3,7 @@ import layout from '../templates/components/google-maps';
 
 export default Ember.Component.extend({
   map: {},
+  markers: [],
   insertMap: function() {
     var container = this.$('.map-canvas');
     var options = {
@@ -23,6 +24,24 @@ export default Ember.Component.extend({
         })
       );  
     }
+
+    if (this.get("loc-list")) {
+      var locations = this.get('loc-list');
+      var _this = this;
+      locations.forEach(function(loc) {
+        var mark = new window.google.maps.Marker({
+          position: new window.google.maps.LatLng(
+            loc.loc.latitude,
+            loc.loc.longitude
+          ),
+          map: _this.get('map'),
+          icon: 'assets/img/safemeet-logo.png'  
+        });
+        _this.get('markers').push(mark);
+        console.log(_this.get('markers').length);  
+      });  
+    }
+    
     var self = this;
     window.google.maps.event.addListener(this.get('map'), 'click', function(e) {
       if (self.get('marker') && self.get('canEdit')) { 

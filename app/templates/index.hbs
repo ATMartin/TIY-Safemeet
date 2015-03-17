@@ -1,7 +1,7 @@
 <div class="menu panel">
   <ul>
   {{#if session.isAuthenticated}}
-  <li>{{link-to "Profile" 'user.new'}}</li>
+  <li>{{link-to "Profile" 'user.profile' session.currentUser}}</li>
   {{else}}
   <li>{{link-to "Login" 'user.login'}}</li>
   {{/if}}
@@ -11,7 +11,7 @@
 </div>
 
 <div class="map panel">
-  {{google-maps lat=loc.latitude long=loc.longitude marked=true}}
+  {{google-maps lat=loc.latitude long=loc.longitude marked=true loc-list=nearbyLocations}}
 </div>
 
 <div class="locations panel">

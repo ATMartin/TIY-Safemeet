@@ -29,8 +29,6 @@ setupController: function(controller, model) {
   if (model) {
     controller.set('loc', model.coords);
     controller.set('nearbyLocations', model.nearbyLocations);
-    //controller.set('latitude', model.latitude);
-    //controller.set('longitude', model.longitude);
   }
 }
 });

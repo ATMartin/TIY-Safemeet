@@ -16,8 +16,6 @@ export default Ember.Controller.extend({
   },
   actions: {
     updateLocWithMarker: function(latLng, map) {
-      console.log(latLng);
-      console.log(map);
       this.set('newLoc.loc.latitude', latLng.k);
       this.set('newLoc.loc.longitude', latLng.D);
       this.get('marker').setMap(null);
