@@ -14,7 +14,10 @@ export function initialize(container) {
             self.set('currentUser', user);  
           });
       }
-    }.observes('objectId')
+    }.observes('objectId'),
+    currentUser: function() {
+      return this.get('currentUser');
+    }
   });
 }
 

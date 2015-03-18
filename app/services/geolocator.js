@@ -9,9 +9,12 @@ export default Ember.Service.extend({
     return this.get('fallback');
   },
   getLoc: function() {
+    console.log('entered getLoc');
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (navigator.geolocation) {
+        console.log('found geo');
         navigator.geolocation.getCurrentPosition(function(data) {
+          console.log('got location');
           resolve(data.coords);
         },
         function() {
@@ -20,7 +23,7 @@ export default Ember.Service.extend({
       } else {
         reject("No geoloc support!");
       } 
-    });
+    }, {maximumAge: 0, timeout: 10000});
   },
   getCurrentZip: function() {
     alert('Not yet implemented!');
