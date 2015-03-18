@@ -25,6 +25,7 @@ model: function() {
       };
      });
 },
+afterModel:function() { console.log('safe');},
 setupController: function(controller, model) { 
   if (model) {
     controller.set('loc', model.coords);

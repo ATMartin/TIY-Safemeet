@@ -1,4 +1,9 @@
 <div class="loc-view">
+  
+  <div class="map">
+    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
+  </div>
+  
   <div class="data panel">
     <h2>{{model.name}}</h2>
     <h4>Description</h4>
@@ -28,8 +33,8 @@
     {{/if}}
   </div>
 
-  <div class="map-new">
-    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
-  </div>
 </div>
 {{outlet}}
+{{#each item in checkboxes}}
+  {{input type=checkbox checked=item.hasThisProperty}}
+{{/each}}

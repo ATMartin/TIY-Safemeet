@@ -1,17 +1,20 @@
 <div class="container">
 
 <header>
-  {{#link-to 'index'}}<h2 id="title">Safemeet</h2>{{/link-to}}
+  {{#link-to 'index'}}<img src="assets/img/safemeet-logo.png">{{/link-to}}
+  <br>
+  <span class="subtitle">
+  {{#if session.isAuthenticated}}
+    Logged in as {{session.currentUser.nickname}}! (<a {{action 'invalidateSession'}} href="javascript:void(0)">logout</a>)
+  {{else}}
+    {{link-to "Login" 'user.login'}}
+  {{/if}}
+  </span>
 </header>
 
 {{outlet}}
 
 <footer>
-  {{#if session.isAuthenticated}}
-    <a {{action "invalidateSession"}} href="javascript:void(0)">Logout</a>
-  {{else}}
-    {{link-to "Login" 'user.login'}}
-  {{/if}}
   Made 2015 by Alex
 </footer>
 
