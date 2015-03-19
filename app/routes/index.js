@@ -7,12 +7,12 @@ model: function() {
     function(coords) { 
       return self.parse.findAllByDistance('Location', coords, '30')
       .then(function(locs) {
-        locs.results.forEach(function(loc) {
+        locs.forEach(function(loc) {
           loc.distance = self.geolocator.distanceBetween(coords, loc.loc);
         });
         return {
           coords: coords,
-          nearbyLocations: locs.results
+          nearbyLocations: locs
         };
       });
     }, 
@@ -25,7 +25,6 @@ model: function() {
       };
      });
 },
-afterModel:function() { console.log('safe');},
 setupController: function(controller, model) { 
   if (model) {
     controller.set('loc', model.coords);
