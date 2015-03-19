@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     if (this.get("loc-list")) {
       var locations = this.get('loc-list');
       var _this = this;
-      locations.forEach(function(loc, idx) {
+      locations.forEach(function(loc) {
         var mark = new window.google.maps.Marker({
           position: new window.google.maps.LatLng(
             loc.loc.latitude,
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
           ),
           map: _this.get('map'),
           //icon: 'assets/img/safemeet-logo.png',
-          icon: 'http://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ (idx+1) +'|FF776B|000000',
+          icon: 'http://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ loc.pos +'|FF776B|000000',
           title: loc.name  
         });
         _this.get('markers').push(mark);
