@@ -1,4 +1,9 @@
 <div class="loc-view">
+  
+  <div class="map">
+    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
+  </div>
+  
   <div class="data panel">
     <h2>{{model.name}}</h2>
     <h4>Description</h4>
@@ -7,11 +12,11 @@
     <h4>Features:</h4>
     <div class="panelbox">
     <label>
-      {{input type='checkbox' checked=feature24Hr name="24hr"}} 24 hour?
+      {{input type='checkbox' checked=feature24Hr name="24hr" disabled=true}} 24 hour?
       <br>
-      {{input type='checkbox' checked=featureSeating  name="indoor"}} Indoor Seating?
+      {{input type='checkbox' checked=featureSeating  name="seating" disabled=true}} Indoor Seating?
       <br>
-      {{input type='checkbox' checked=newLoc.features.power name="power"}} Power available?
+      {{input type='checkbox' checked=featurePower  name="power" disabled=true}} Power available?
     </label>
     </div>
     <br>
@@ -28,8 +33,8 @@
     {{/if}}
   </div>
 
-  <div class="map-new">
-    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
-  </div>
 </div>
 {{outlet}}
+{{#each item in checkboxes}}
+  {{input type=checkbox checked=item.hasThisProperty}}
+{{/each}}

@@ -1,1 +1,18 @@
+<div class="user-view">
+  <div class="profile panel">
+    {{#if model.isPublic}}
+      <h2>{{model.fname}} {{model.lname}}</h2>
+      <h3>a.k.a. '{{model.nickname}}'</h3>
+      <h3>Based out of {{model.homezip}}</h3>  
+    {{else}}
+      <h2>'{{model.nickname}}'</h2>
+    {{/if}}
+    <h3>Created: {{model.createdAt}}</h3>
+    {{#if isCurrentUser}}
+      <button {{action 'editUser'}}>Edit Me</button>
+    {{/if}}
+  </div>
+</div>
+
+
 {{outlet}}

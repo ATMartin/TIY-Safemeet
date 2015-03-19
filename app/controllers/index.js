@@ -9,12 +9,13 @@ export default Ember.Controller.extend({
     var model = this.get('model');
     var locations = model.nearbyLocations;
     locations.forEach(function(loc) {
-      console.log(loc);
       loc.distance = this.geolocator.distanceBetween(model.coords, loc.loc);
-      console.log(loc.distance);
     });
     return locations;
   },
   actions: {
+    test: function() {
+      console.log(this.session);
+    }
   }
 });

@@ -1,9 +1,15 @@
 
-<form {{action "authenticate" on="submit"}}>
-  {{input value=identification placeholder="Email" type='email' }}
-  {{input value=password placeholder="Password" type='password' }}
-  <button type="submit">Login</button>
-  <button {{action "gotoNewUser"}}>New User?</button>
-</form>
+<div class='user-view'> 
+  <div class='login panel'>
+    <form {{action "authenticate" on="submit"}}>
+      {{input value=identification placeholder="Email" type='email' }}
+      <br>
+      {{input value=password placeholder="Password" type='password' }}
+      <br>
+      <button type="submit">Login</button>
+      <button {{action "gotoNewUser"}}>New User?</button>
+    </form>
+  </div>
+</div>
 
 {{outlet}}

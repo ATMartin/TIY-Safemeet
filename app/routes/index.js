@@ -7,7 +7,6 @@ model: function() {
     function(coords) { 
       return self.parse.findAllByDistance('Location', coords, '30')
       .then(function(locs) {
-        //console.log(coords);
         locs.results.forEach(function(loc) {
           loc.distance = self.geolocator.distanceBetween(coords, loc.loc);
         });
@@ -26,12 +25,11 @@ model: function() {
       };
      });
 },
+afterModel:function() { console.log('safe');},
 setupController: function(controller, model) { 
   if (model) {
     controller.set('loc', model.coords);
     controller.set('nearbyLocations', model.nearbyLocations);
-    //controller.set('latitude', model.latitude);
-    //controller.set('longitude', model.longitude);
   }
 }
 });
