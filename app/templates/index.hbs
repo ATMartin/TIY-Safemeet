@@ -15,22 +15,24 @@
 </div>
 
 <div class="locations panel">
-  <ul>
+  <!-- <ul> -->
   {{#if nearbyLocations.length }}
-  {{#each location in nearbyLocations}}
-    <li>
-      {{#link-to 'loc.view' location}}
-        <h2>{{location.name}}</h2>
-      {{/link-to}}
-      <p>{{location.distance}} miles</p>
-      <p>{{location.description}}</p>
-    </li>
-  {{/each}}
+  {{#view "scrollpanel"}}
+    {{#each location in nearbyLocations}}
+      <li>
+        {{#link-to 'loc.view' location}}
+          <h2>{{location.name}}</h2>
+        {{/link-to}}
+        <p>{{location.distance}} miles</p>
+        <p>{{location.description}}</p>
+      </li>
+    {{/each}}
+  {{/view}}
   {{else}}
     <h2>No Safemeet locations nearby.</h2>
     {{#link-to 'loc.new'}}
       <h2>Why not add some?</h2>
     {{/link-to}}
   {{/if}}
-  </ul>
+  <!-- </ul> -->
 </div>

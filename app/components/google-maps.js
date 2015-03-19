@@ -38,7 +38,6 @@ export default Ember.Component.extend({
           icon: 'assets/img/safemeet-logo.png'  
         });
         _this.get('markers').push(mark);
-        console.log(_this.get('markers').length);  
       });  
     }
     
@@ -52,8 +51,6 @@ export default Ember.Component.extend({
     });
   }.on('didInsertElement'),
   triggerRedraw: function() {
-    //var myMap = this.get('map');
-    //window.google.maps.event.trigger(myMap, 'resize');
     this.insertMap();
   }.observes('lat', 'long'),
   layout: layout

@@ -43,7 +43,12 @@ export default Ember.Object.extend({
       data: "where=" + encodeURIComponent(JSON.stringify(request))
     })
     .then(function(data) {
-      return data;
+      return data.results.map(function(obj) {
+        obj.id = obj.objectId;
+        //delete obj.objectId;
+        return obj;  
+      });
+      //return data;
     });
   },
 
