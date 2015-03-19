@@ -20,7 +20,8 @@ export default Ember.Component.extend({
             this.get('lat'),
             this.get('long')
           ),
-          map: this.get('map')
+          map: this.get('map'),
+          title: 'You are here!'
         })
       );  
     }
@@ -28,14 +29,16 @@ export default Ember.Component.extend({
     if (this.get("loc-list")) {
       var locations = this.get('loc-list');
       var _this = this;
-      locations.forEach(function(loc) {
+      locations.forEach(function(loc, idx) {
         var mark = new window.google.maps.Marker({
           position: new window.google.maps.LatLng(
             loc.loc.latitude,
             loc.loc.longitude
           ),
           map: _this.get('map'),
-          icon: 'assets/img/safemeet-logo.png'  
+          //icon: 'assets/img/safemeet-logo.png',
+          icon: 'http://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ (idx+1) +'|FF776B|000000',
+          title: loc.name  
         });
         _this.get('markers').push(mark);
       });  

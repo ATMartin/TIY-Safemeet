@@ -61,6 +61,15 @@ footer {
   text-align: center;
 }
 
+.splash-frame {
+  @include shift(3);
+  @include span-columns(6);
+  @include omega();
+  border: 1px solid green;
+  background: blue;
+  margin-top: 100px;
+}
+
 .menu {
   position: absolute;
   z-index: 555;
