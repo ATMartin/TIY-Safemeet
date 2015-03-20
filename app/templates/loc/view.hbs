@@ -24,12 +24,15 @@
     <br>
     <p>Location Info (address?)</p>
     <br><br>
-    <button {{action "gotoEdit"}}>Edit This Location</button>
     {{#if session.isAuthenticated }}
       <br>
       <button {{action "likeLocation"}}>Like This Location</button>
       <br>
       <button {{action "reportLocation"}}>Report This Location</button>
+      {{#if session.currentUser.isAdmin}}
+        <br>    
+        <button {{action "gotoEdit"}}>Edit This Location</button>
+      {{/if}}
     {{/if}}
   </div>
 

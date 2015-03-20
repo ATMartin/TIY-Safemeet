@@ -65,9 +65,37 @@ footer {
   @include shift(3);
   @include span-columns(6);
   @include omega();
-  border: 1px solid green;
-  background: blue;
+  border: 1px solid #DDD;
+  background: #F7F7F7;
+  text-align: center;
   margin-top: 100px;
+  .splash { 
+    margin: 5%;
+    h1 { margin-bottom: 0; }
+    .subtitle { font-style: italic; }
+  }
+  .loading {
+    margin-bottom: 5%;
+    .dot {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      background: #333;
+      border-radius: 50%;
+      margin: 0 10px;
+      @include animation(pulse 2.5s ease-in 0s infinite);
+    }
+    .seconddot { @include animation-delay(0.75s); }
+    .thirddot { @include animation-delay(1.5s); } 
+  }
+}
+
+
+@include keyframes(pulse) {
+  from { transform: scale(1); }
+  25% { transform: scale(1.25); }
+  50% { transform: scale(0.9); }
+  to { transform: scale(1); }
 }
 
 .menu {

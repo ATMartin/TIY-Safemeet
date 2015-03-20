@@ -25,6 +25,18 @@ export default Ember.Service.extend({
       } 
     }, {maximumAge: 0, timeout: 10000});
   },
+  getLocFromAddress: function(address) {
+    var gc = new window.google.maps.Geocoder();
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      gc.geocode({address: address}, function(res, status) {
+        if (status === window.google.maps.GeocoderStatus.OK) {
+          resolve(res);
+        } else { 
+          resolve({'message':'NOPE'});
+        }
+      });
+    });
+  },
   getCurrentZip: function() {
     alert('Not yet implemented!');
     /*

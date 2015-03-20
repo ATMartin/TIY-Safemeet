@@ -5,8 +5,13 @@
   {{else}}
   <li>{{link-to "Login" 'user.login'}}</li>
   {{/if}}
-  <li>{{link-to "New..." 'loc.new'}} </li>
-  <li><<button {{action "test"}}>Test Action</button></li>
+  <li>{{link-to "New Location" 'loc.new'}} </li>
+  <li>
+    <form {{action "findAddress" on='submit'}}>
+      Find: {{input value=searchAddress placeholder="Address/Zip"}}
+    </form>
+  </li>
+  <li><button {{action "test"}}>Test Action</button></li>
   </ul>
 </div>
 
