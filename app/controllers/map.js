@@ -13,13 +13,46 @@ export default Ember.Controller.extend({
   //  });
   //  return locations;
   //},
+  searchAddress: null,
+  searchRange: null,
   actions: {
     test: function() {
-      console.log(this.session);
+      //console.log(this.get('model'));
     },
+    //findAddress: function() {
+    //  this.geolocator.getLocFromAddress(this.get('searchAddress'));
+      //console.log(this.get('searchAddress'));
+    //  return false;
+    //},
+    updateAddress: function() {
+      var self=this;
+      var loc = this.get('searchAddress');
+      var range = this.get('searchRange') || 30;
+      //if (!range) { range = 30; }
+      
+      if (loc) {
+        this.geolocator.getLocFromAddress(loc).then(function(data) {
+          console.log(data);
+          var coords = data[0].geometry.location;
+          self.transitionToRoute('/map/' + coords.k + '/' + coords.D + '/' + range);  
+        });  
+      } else {
+       var coords = this.get('loc');
+       self.transitionToRoute('/map/' + coords.latitude + '/' + coords.longitude + '/' + range);
+      }
+     /* 
     findAddress: function() {
-      this.geolocator.getLocFromAddress(this.get('searchAddress'));
-      console.log(this.get('searchAddress'));
+      var self = this;
+      var address = this.get('searchAddress');
+      this.geolocator.getLocFromAddress(address).then(function(data) { 
+        //console.log(data); 
+        var coords = data[0].geometry.location;
+        self.transitionToRoute('map',{lat: coords.k , long: coords.D, range: 30 });
+      }); 
+      //Prevent page refresh on submission - just in case.
+      return false;
+    }
+     */ 
       return false;
     }
   }

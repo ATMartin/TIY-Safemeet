@@ -7,15 +7,25 @@
   {{/if}}
   <li>{{link-to "New Location" 'loc.new'}} </li>
   <li>
-    <form {{action "findAddress" on='submit'}}>
-      Find: {{input value=searchAddress placeholder="Address/Zip"}}
+    <form {{action "updateAddress" on='submit'}}>
+      <span class="form-header">Current Map</span>
+      <br>
+      <span class="form-label">Find Address / Location</span>
+      <br>
+      {{input value=searchAddress placeholder="Address/Zip"}}
+      <br>
+      <span class="form-label">Find Safemeets within:</span>
+      {{input value=searchRange placeholder="Distance"}}
+      <span class="form-label"> miles</span>
+      <br>
+      <button type="submit">Update</button>
     </form>
   </li>
   <li><button {{action "test"}}>Test Action</button></li>
   </ul>
 </div>
 
-<div class="map panel">
+<div class="map">
   {{google-maps lat=loc.latitude long=loc.longitude marked=true loc-list=nearbyLocations}}
 </div>
 

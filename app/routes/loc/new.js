@@ -9,8 +9,9 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model) {
     if (model) {
-      controller.set('newLoc.loc.latitude', model.latitude);
-      controller.set('newLoc.loc.longitude', model.longitude);
+      console.log(model); 
+      controller.set('newLoc.loc.latitude', +model.latitude);
+      controller.set('newLoc.loc.longitude', +model.longitude);
     }
   }
 });

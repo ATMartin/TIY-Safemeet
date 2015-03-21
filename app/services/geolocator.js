@@ -12,9 +12,9 @@ export default Ember.Service.extend({
     console.log('entered getLoc');
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (navigator.geolocation) {
-        console.log('found geo');
+        //console.log('found geo');
         navigator.geolocation.getCurrentPosition(function(data) {
-          console.log('got location');
+          //console.log('got location');
           resolve(data.coords);
         },
         function() {
