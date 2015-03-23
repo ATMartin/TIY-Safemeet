@@ -9,12 +9,9 @@ export default Ember.Service.extend({
     return this.get('fallback');
   },
   getLoc: function() {
-    console.log('entered getLoc');
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (navigator.geolocation) {
-        console.log('found geo');
         navigator.geolocation.getCurrentPosition(function(data) {
-          console.log('got location');
           resolve(data.coords);
         },
         function() {
@@ -25,16 +22,33 @@ export default Ember.Service.extend({
       } 
     }, {maximumAge: 0, timeout: 10000});
   },
-  getCurrentZip: function() {
-    alert('Not yet implemented!');
-    /*
+  getLocFromAddress: function(address) {
+    var gc = new window.google.maps.Geocoder();
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      gc.geocode({address: address}, function(res, status) {
+        if (status === window.google.maps.GeocoderStatus.OK) {
+          resolve(res);
+        } else { 
+          resolve({'message':'NOPE'});
+        }
+      });
+    });
+  },
+  getCurrentZip: function(context, target) {
+    //alert('Not yet implemented!');
     var geocoder = new window.google.maps.Geocoder();
     var latlng;
     return this.getLoc().then(function(coords) {
       latlng = new window.google.maps.LatLng(coords.latitude, coords.longitude);
-    }).finally(function() { 
+      console.log(latlng);
+    }).then(function() { 
       return geocoder.geocode({'latLng': latlng}, function(results) {
-        return true;
+        console.log(results);
+        results[0].address_components.forEach(function(component) {
+          if (component.types[0] === "postal_code") { 
+            context.set(target, component.long_name);
+          } 
+        });
       });
     });
     /*

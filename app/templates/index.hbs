@@ -5,8 +5,13 @@
   {{else}}
   <li>{{link-to "Login" 'user.login'}}</li>
   {{/if}}
-  <li>{{link-to "New..." 'loc.new'}} </li>
-  <li><<button {{action "test"}}>Test Action</button></li>
+  <li>{{link-to "New Location" 'loc.new'}} </li>
+  <li>
+    <form {{action "findAddress" on='submit'}}>
+      Find: {{input value=searchAddress placeholder="Address/Zip"}}
+    </form>
+  </li>
+  <li><button {{action "test"}}>Test Action</button></li>
   </ul>
 </div>
 
@@ -21,7 +26,7 @@
     {{#each location in nearbyLocations}}
       <li>
         {{#link-to 'loc.view' location}}
-          <h2>{{location.name}}</h2>
+          <h2>{{location.pos}}: {{location.name}}</h2>
         {{/link-to}}
         <p>{{location.distance}} miles</p>
         <p>{{location.description}}</p>

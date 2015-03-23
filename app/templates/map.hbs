@@ -1,5 +1,54 @@
-<h2>Lat is {{model.lat}}</h2>
-<h2>Long is {{model.long}}</h2>
-{{google-maps lat=model.lat long=model.long }}
-<button {{action "logData"}}>Log It</button>
-{{outlet}}
+<div class="menu panel">
+  <ul>
+  {{#if session.isAuthenticated}}
+  <li>
+    <span class="menu-name">Welcome, {{session.currentUser.nickname}}!</span>
+  </li>
+  <li>{{link-to "- Your Profile" 'user.profile' session.currentUser}}</li>
+  {{else}}
+  <li>{{link-to "Login" 'user.login' class="menu-name"}}</li>
+  {{/if}}
+  <li>{{link-to " - New Location" 'loc.new'}} </li>
+  <form {{action "updateAddress" on='submit'}}>
+    <li><span class="form-header">Current Map</span></li>
+    <li>
+      <span class="form-label">Lookup Location:</span>
+      <br>
+      {{input value=searchAddress placeholder="Address/Zip"}}
+      <br>
+      <span class="form-label">Search Range:</span>
+      {{input value=searchRange placeholder="In Miles"}}
+      <br>
+      <button type="submit">Update</button>
+    </li>
+  </form>
+  <li><button {{action "test"}}>Test Action</button></li>
+  </ul>
+</div>
+
+<div class="map">
+  {{google-maps lat=loc.latitude long=loc.longitude marked=true loc-list=nearbyLocations}}
+</div>
+
+<div class="locations panel">
+  <!-- <ul> -->
+  {{#if nearbyLocations.length }}
+  {{#view "scrollpanel"}}
+    {{#each location in nearbyLocations}}
+      <li>
+        {{#link-to 'loc.view' location}}
+          <h2>{{location.pos}}: {{location.name}}</h2>
+        {{/link-to}}
+        <p>{{location.distance}} miles</p>
+        <p>{{location.description}}</p>
+      </li>
+    {{/each}}
+  {{/view}}
+  {{else}}
+    <h2>No Safemeet locations nearby.</h2>
+    {{#link-to 'loc.new'}}
+      <h2>Why not add some?</h2>
+    {{/link-to}}
+  {{/if}}
+  <!-- </ul> -->
+</div>

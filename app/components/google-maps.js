@@ -23,6 +23,7 @@ export default Ember.Component.extend({
           ),
           map: this.get('map'),
           icon: icon
+          title: 'You are here!'
         })
       );  
     }
@@ -37,7 +38,9 @@ export default Ember.Component.extend({
             loc.loc.longitude
           ),
           map: _this.get('map'),
-          icon: 'assets/img/safemeet-logo.png'  
+          //icon: 'assets/img/safemeet-logo.png',
+          icon: 'http://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ loc.pos +'|FF776B|000000',
+          title: loc.name  
         });
         _this.get('markers').push(mark);
       });  
