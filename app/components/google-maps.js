@@ -22,7 +22,7 @@ export default Ember.Component.extend({
             this.get('long')
           ),
           map: this.get('map'),
-          icon: icon
+          icon: icon,
           title: 'You are here!'
         })
       );  
