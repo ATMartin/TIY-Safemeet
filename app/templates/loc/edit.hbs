@@ -1,15 +1,38 @@
-<h3>Edit Location</h3>
-{{input value=model.name}}
-<br>
-{{textarea value=model.description}}
-<br>
-<span>Features:</span>
-<p>Current Lat & Long (click map to change)</p>
-Lat: {{input value=model.loc.latitude}}
-Long: {{input value=model.loc.longitude}}
-{{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true canEdit=true action="updateLocWithMarker"}}
-<button {{action "updateLocation"}}>Save Changes</button>
-<button {{action "gotoIndex"}}>Discard Changes</button>
-<br>
-<button {{action "deleteLocation"}}>Delete This Location</button>
+<div class="loc-view">
+  <div class="data panel">
+    <h3>Edit Location</h3>
+    Name:
+    <br>
+    {{input value=model.name}}
+    <br>
+    Description:
+    <br>
+    {{textarea value=model.description}}
+    <br>
+    <span>Features:</span>
+    <br>
+    {{input type='checkbox' checked=feature24hr}} 24 hour?
+    <br>
+    {{input type='checkbox' checked=featureSeating}} Power available?
+    <br>
+    {{input type='checkbox' checked=featurePower}} Indoor seating?
+    <br>
+    <span>Current Lat & Long (click map to change)</span>
+    <br>
+    Lat: {{input value=model.loc.latitude}}
+    <br>
+    Long: {{input value=model.loc.longitude}}
+    <br>
+    <button {{action "updateLocation"}}>Save Changes</button>
+    <br>
+    <button {{action "gotoIndex"}}>Discard Changes</button>
+    <br>
+    <button {{action "deleteLocation"}}>Delete This Location</button>
+  </div>
+</div>
+
+<div class="map">
+  {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true canEdit=true action="updateLocWithMarker"}}
+</div>
+
 {{outlet}}

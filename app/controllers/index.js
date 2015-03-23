@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
       var self = this;
       var address = this.get('searchAddress');
       this.geolocator.getLocFromAddress(address).then(function(data) { 
-        console.log(data); 
+        //console.log(data); 
         var coords = data[0].geometry.location;
         self.transitionToRoute('map',{lat: coords.k , long: coords.D, range: 30 });
       }); 

@@ -1,26 +1,27 @@
 <div class="menu panel">
   <ul>
   {{#if session.isAuthenticated}}
-  <li>{{link-to "Profile" 'user.profile' session.currentUser}}</li>
-  {{else}}
-  <li>{{link-to "Login" 'user.login'}}</li>
-  {{/if}}
-  <li>{{link-to "New Location" 'loc.new'}} </li>
   <li>
-    <form {{action "updateAddress" on='submit'}}>
-      <span class="form-header">Current Map</span>
-      <br>
-      <span class="form-label">Find Address / Location</span>
+    <span class="menu-name">Welcome, {{session.currentUser.nickname}}!</span>
+  </li>
+  <li>{{link-to "- Your Profile" 'user.profile' session.currentUser}}</li>
+  {{else}}
+  <li>{{link-to "Login" 'user.login' class="menu-name"}}</li>
+  {{/if}}
+  <li>{{link-to " - New Location" 'loc.new'}} </li>
+  <form {{action "updateAddress" on='submit'}}>
+    <li><span class="form-header">Current Map</span></li>
+    <li>
+      <span class="form-label">Lookup Location:</span>
       <br>
       {{input value=searchAddress placeholder="Address/Zip"}}
       <br>
-      <span class="form-label">Find Safemeets within:</span>
-      {{input value=searchRange placeholder="Distance"}}
-      <span class="form-label"> miles</span>
+      <span class="form-label">Search Range:</span>
+      {{input value=searchRange placeholder="In Miles"}}
       <br>
       <button type="submit">Update</button>
-    </form>
-  </li>
+    </li>
+  </form>
   <li><button {{action "test"}}>Test Action</button></li>
   </ul>
 </div>
