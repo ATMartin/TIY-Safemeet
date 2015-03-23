@@ -29,10 +29,6 @@ module.exports = function(environment) {
     },
     'simple-auth': {
       authenticationRoute: 'user/login'
-    },
-    keys: {
-      twilio_SID: 'AC5ea618dacee0512f771ca416a4072000',
-      twilio_auth: '295c76eb5afad2daa90e4912d8bfd26f'
     }
   };
   

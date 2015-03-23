@@ -24,6 +24,10 @@
     <br>
     <p>Location Info (address?)</p>
     <br><br>
+    <h4>Share</h4>
+    <label>Share via SMS:</label>
+      {{input value=sharePhone placeholder="xxx-xxx-xxxx"}}
+      <button {{action "shareViaSMS"}}{{bind-attr disabled='hasPhone'}}>Share!</button>
     {{#if session.isAuthenticated }}
       <br>
       <button {{action "likeLocation"}}>Like This Location</button>

@@ -18,9 +18,17 @@ export default Ember.Controller.extend({
     return (this.get('model.features').indexOf(feature) > -1);
   }.property('model.features'),
   
+  sharePhone: '',
+  hasPhone: function() {
+    return (this.get('sharePhone').length !== 12);
+  }.property('sharePhone'),
   actions: {
     gotoEdit: function() {
       this.transitionToRoute('loc.edit', this.get('model'));
+    },
+    shareViaSMS: function() {
+      console.log(this.get('sharePhone'));
+      alert("TODO: Send Text Messages!");
     }
   }
 });
