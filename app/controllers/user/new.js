@@ -14,7 +14,8 @@ export default Ember.Controller.extend({
     },
 
     getLoc: function() {
-      this.geolocator.getCurrentZip();
+      this.set('user.homezip', "Loading...");
+      this.geolocator.getCurrentZip(this, 'user.homezip');
     }
 
   }
