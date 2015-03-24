@@ -1,3 +1,19 @@
+{{#atm-modal enabled=false title="About Safemeet" id="modal-about"}}
+<p>
+  Safemeet is a new application that makes it a breeze to arrange safe meeting locations with strangers. 
+  Intended for users of online secondhand marketplaces, Safemeet allows you to see popular, occupied locations nearby to schedule meetups at. Locations can be created & rated by users like you. 
+  To get started:
+  <ul>
+    <li>Type in an address or zip code you'd like to check for Safemeet locations.</li>
+    <li>Click on any of the displayed Safemeet locations in the right menu to view more info.</li>
+    <li>Add your favorite meetup location if it's not already listed!</li>
+    <li>Consider creating a profile to take advantage of social features.</li>
+  </ul> 
+
+  Thanks, and enjoy!
+</p>
+
+{{/atm-modal}}
 <div class="menu panel">
   <ul>
   {{#if session.isAuthenticated}}
@@ -22,7 +38,7 @@
       <button type="submit">Update</button>
     </li>
   </form>
-  <li><button {{action "test"}}>Test Action</button></li>
+  <li><a {{action "openModal"}} class="menu-name" href="javascript:void(0)">Learn More</a></li>
   </ul>
 </div>
 

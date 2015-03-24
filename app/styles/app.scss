@@ -23,6 +23,72 @@ body {
   position: relative;
 }
 
+.modal-shadow {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(20, 20, 20, 0.5);
+  z-index: 999;
+  transition: all ease 0.5s;
+  .modal-frame {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 20%;
+    max-height: 60%;
+    padding: 5px;
+    background: rgba(240, 240, 240, 0.9);
+    color: #222;
+    box-shadow: 0 2px 3px #333; 
+  //border: 1px solid #DDDDDD;
+  //color: #222;
+  //box-shadow: 0 0 3px #333;
+
+    .modal-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      padding: 2%;
+      border-bottom: 1px solid #333;
+      text-align: center;
+      .modal-logo {
+        position: absolute;
+        top: -40px;
+        left: 43%;
+        padding-top: 5px;
+        height: 55px;
+        width: 70px;
+        background: rgba(240, 240, 240, 0.9);
+        border: 4px solid #333;
+        border-radius: 50%;
+      }
+      .modal-title-text {
+        margin-top: 2%;
+      }
+      button {
+        position: absolute;
+        right: -12px;
+        top: -12px;
+        height: 25px;
+        width: 25px;
+        border: 2px solid black;
+        border-radius: 50%;
+      }
+    }
+    .modal-body {
+      margin-top: 5%;
+      padding: 2%;
+    }
+  }
+
+}
+
 .scrollpanel {
   overflow: hidden;
   .up-scroll, 

@@ -1,0 +1,18 @@
+{{#if enabled}}
+<div class="modal-shadow"> 
+  <div class="modal-frame">
+  <div class="modal-title">
+    <div class="modal-logo">  
+      <img src="assets/img/safemeet-logo.png">
+    </div>
+    <h3 class="modal-title-text">
+     {{title}}
+    </h3>
+    <button {{action "toggleModal"}}>X</button>
+  </div>
+  <div class="modal-body">
+    {{yield}}
+  </div>
+  </div>
+</div>
+{{/if}}

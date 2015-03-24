@@ -17,7 +17,12 @@ export default Ember.Controller.extend({
   searchRange: null,
   actions: {
     test: function() {
-      //console.log(this.get('model'));
+    console.log(Ember.View.views);
+    },
+    openModal: function() {
+      // Figured this out courtesy of ic-modal. Noice!
+      var modal = Ember.View.views['modal-about'];
+      modal.send('toggleModal');
     },
     //findAddress: function() {
     //  this.geolocator.getLocFromAddress(this.get('searchAddress'));
