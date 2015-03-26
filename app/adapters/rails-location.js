@@ -31,4 +31,15 @@ export default Ember.Object.extend({
     });
   },
 
+  update: function(context, object) {
+    return ajax({
+      url: this.serverURL + this.serverRoute + object.id,
+      type: "PUT",
+      data: JSON.stringify(object)
+    })
+    .then(function(data){
+      return data;
+    });
+  },
+
 });

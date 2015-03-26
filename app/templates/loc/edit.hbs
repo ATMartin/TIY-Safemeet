@@ -11,17 +11,17 @@
     <br>
     <span>Features:</span>
     <br>
-    {{input type='checkbox' checked=feature24hr}} 24 hour?
+    {{input type='checkbox' checked=model.feature24hr}} 24 hour?
     <br>
-    {{input type='checkbox' checked=featureSeating}} Power available?
+    {{input type='checkbox' checked=model.featureSeating}} Power available?
     <br>
-    {{input type='checkbox' checked=featurePower}} Indoor seating?
+    {{input type='checkbox' checked=model.featurePower}} Indoor seating?
     <br>
     <span>Current Lat & Long (click map to change)</span>
     <br>
-    Lat: {{input value=model.loc.latitude}}
+    Lat: {{input value=model.loc.[0]}}
     <br>
-    Long: {{input value=model.loc.longitude}}
+    Long: {{input value=model.loc.[1]}}
     <br>
     <button {{action "updateLocation"}}>Save Changes</button>
     <br>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="map">
-  {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true canEdit=true action="updateLocWithMarker"}}
+  {{google-maps lat=model.loc.[0] long=model.loc.[1] marked=true canEdit=true action="updateLocWithMarker"}}
 </div>
 
 {{outlet}}

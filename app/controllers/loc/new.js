@@ -37,7 +37,6 @@ export default Ember.Controller.extend({
           console.log(loc);
           self.transitionToRoute('loc.view', loc);    
         //});
-        //console.log(data);
       });
     }
   }
