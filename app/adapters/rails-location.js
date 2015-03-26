@@ -12,6 +12,13 @@ export default Ember.Object.extend({
             });
   },
 
+  findAll: function(context) {
+    return ajax(this.serverURL + this.serverRoute)
+            .then(function(data) {
+              return data;
+            });
+  },
+
   push: function(context, object) {
     
     return ajax({

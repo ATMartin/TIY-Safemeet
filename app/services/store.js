@@ -26,8 +26,8 @@ export default Ember.Service.extend({
     return adapter.push(context, object);
   },
 
-  update: function(context, object) {
-    var adapter = this.container.lookup('adapter:' + context);
+  update: function(db, context, object) {
+    var adapter = this.container.lookup('adapter:' + db + '-' + context);
     return adapter.update(context, object);
   },
 
