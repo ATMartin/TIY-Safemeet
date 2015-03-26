@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   newLoc: {
     name: "",
     description: "",
-    //features: [],
+    address: null,
     feature24hr: false,
     featureSeating: false,
     featurePower: false,

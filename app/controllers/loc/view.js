@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  /*
   feature24Hr: function() {
     return (this.get('model.features').indexOf("24hr") > -1);
   }.property('model.features'),
@@ -17,6 +18,7 @@ export default Ember.Controller.extend({
   hasFeature: function(feature) {
     return (this.get('model.features').indexOf(feature) > -1);
   }.property('model.features'),
+ */
   
   sharePhone: '',
   hasPhone: function() {

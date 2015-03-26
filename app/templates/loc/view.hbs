@@ -1,7 +1,7 @@
 <div class="loc-view">
   
   <div class="map">
-    {{google-maps lat=model.loc.latitude long=model.loc.longitude marked=true}}
+    {{google-maps lat=model.loc.[0] long=model.loc.[1] marked=true}}
   </div>
   
   <div class="data panel">
@@ -12,18 +12,21 @@
     <h4>Features:</h4>
     <div class="panelbox">
     <label>
-      {{input type='checkbox' checked=feature24Hr name="24hr" disabled=true}} 24 hour?
+      {{input type='checkbox' checked=model.feature24hr name="24hr" disabled=true}} 24 hour?
       <br>
-      {{input type='checkbox' checked=featureSeating  name="seating" disabled=true}} Indoor Seating?
+      {{input type='checkbox' checked=model.featureSeating  name="seating" disabled=true}} Indoor Seating?
       <br>
-      {{input type='checkbox' checked=featurePower  name="power" disabled=true}} Power available?
+      {{input type='checkbox' checked=model.featurePower  name="power" disabled=true}} Power available?
     </label>
     </div>
     <br>
-    <h4>Location:</h4>
+    {{#if model.address}}
+      <h4>Location:</h4>
+      <br>
+      <p>{{model.address}}</p>
+      <br>
+    {{/if}}
     <br>
-    <p>Location Info (address?)</p>
-    <br><br>
     <h4>Share</h4>
     <label>Share via SMS:</label>
       {{input value=sharePhone placeholder="xxx-xxx-xxxx"}}

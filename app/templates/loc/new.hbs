@@ -3,9 +3,15 @@
     <h2>New Location:</h2>
     <form {{action "saveNewLocation" on="submit"}}>
       <label>Location Name:</label>
+      <br>
       {{input value=newLoc.name placeholder="Mcdonald's, Parking Lot"}}
       <br>
+      <label>Address:</label>
+      <br>
+      {{input value=newLoc.address placeholder="Address (optional)"}}
+      <br>
       <label>Description</label>
+      <br>
       {{textarea value=newLoc.description placeholder="Tell us a little about this location..."}}
       <br>
       <label>Features:</label>
