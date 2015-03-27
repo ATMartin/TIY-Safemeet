@@ -34,8 +34,8 @@ export default Ember.Component.extend({
       locations.forEach(function(loc) {
         var mark = new window.google.maps.Marker({
           position: new window.google.maps.LatLng(
-            loc.loc.latitude,
-            loc.loc.longitude
+            loc.loc[0],
+            loc.loc[1]
           ),
           map: _this.get('map'),
           //icon: 'assets/img/safemeet-logo.png',
