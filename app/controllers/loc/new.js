@@ -4,20 +4,34 @@ export default Ember.Controller.extend({
   newLoc: {
     name: "",
     description: "",
-    features: [],
+    address: null,
+    feature24hr: false,
+    featureSeating: false,
+    featurePower: false,
     loc: {
       __type: "GeoPoint",
       latitude: 34,
       longitude: -84
     }
   },
-  
-  feature24Hr: false,
-  featureSeating: false,
-  featurePower: false,
 
   marker: {
     setMap: function() {}  
+  },
+  reset: function() {
+    this.set('newLoc', {
+      name: "",
+      description: "",
+      address: null,
+      feature24hr: false,
+      featureSeating: false,
+      featurePower: false,
+      loc: {
+        __type: "GeoPoint",
+        latitude: 34,
+        longitude: -84
+      }
+    });
   },
   actions: {
     updateLocWithMarker: function(latLng, map) {
@@ -32,15 +46,11 @@ export default Ember.Controller.extend({
     },
     saveNewLocation: function() {
       var self = this;
-      if (this.feature24Hr) { this.get('newLoc.features').push('24hr'); }
-      if (this.featureSeating) { this.get('newLoc.features').push('seating'); }
-      if (this.featurePower) { this.get('newLoc.features').push('power'); }
-
       console.log(this.get('newLoc'));
-      this.parse.push('Location', this.get('newLoc')).then(function(data) {
-        self.parse.find('Location', data.objectId).then(function(loc) {
-          self.transitionToRoute('loc.view', loc);    
-        });
+      this.store.push('rails', 'location', this.get('newLoc')).then(function(loc) {
+        self.reset();
+        console.log(loc);
+        self.transitionToRoute('loc.view', loc);    
       });
     }
   }

@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   marker: {
     setMap: function() {}
   },
+  /*
   featureToggle: function(featureName) {
     var currentFeatures = this.get('model.features');
     var hasFeature = currentFeatures.indexOf(featureName);
@@ -23,10 +24,10 @@ export default Ember.Controller.extend({
   feature24hr: false, 
   featureSeating: false, 
   featurePower: false, 
-  
+  */ 
   actions: {
     updateLocWithMarker: function(latLng, map) {
-      console.log(latLng);
+      //console.log(latLng);
       this.set('model.loc.latitude', latLng.k);  
       this.set('model.loc.longitude', latLng.D);
       this.get('marker').setMap(null);
@@ -39,13 +40,20 @@ export default Ember.Controller.extend({
       }));
     },
     updateLocation: function() {
-      var features = [];
-      if (this.feature24hr) { features.push('24hr'); }
-      if (this.featureSeating) { features.push('seating'); }
-      if (this.featurePower) { features.push('power'); }
-      this.set('model.features', features);
-      this.parse.update('Location', this.get('model'));
-      this.transitionToRoute('loc.view', this.get('model'));  
+      //var features = [];
+      //if (this.feature24hr) { features.push('24hr'); }
+      //if (this.featureSeating) { features.push('seating'); }
+      //if (this.featurePower) { features.push('power'); }
+      //this.set('model.features', features);
+      //this.parse.update('Location', this.get('model'));
+      var self = this;
+      console.log(this.get('model'));
+      this.store.update('rails', 'location', this.get('model'))
+      .then(function(loc) {
+        console.log(loc);
+        //self.transitionToRoute('loc.view', loc);
+      });
+      //this.transitionToRoute('loc.view', this.get('model'));  
     },
     deleteLocation: function() {
       if (confirm("Are you sure?")) {

@@ -1,23 +1,7 @@
 import Ember from 'ember';
+import ajax from 'ic-ajax';
 
 export default Ember.Controller.extend({
-  feature24Hr: function() {
-    return (this.get('model.features').indexOf("24hr") > -1);
-  }.property('model.features'),
-  
-  featureSeating: function() {
-    return (this.get('model.features').indexOf("seating") > -1);
-  }.property('model.features'),
-  
-  featurePower: function() {
-    return (this.get('model.features').indexOf("power") > -1);
-  }.property('model.features'),
-  // It appears the following won't work to DRY this code up.
-  // BOOOO, Handlebars limitations. :(
-  hasFeature: function(feature) {
-    return (this.get('model.features').indexOf(feature) > -1);
-  }.property('model.features'),
-  
   sharePhone: '',
   hasPhone: function() {
     return (this.get('sharePhone').length !== 12);
@@ -27,8 +11,27 @@ export default Ember.Controller.extend({
       this.transitionToRoute('loc.edit', this.get('model'));
     },
     shareViaSMS: function() {
-      console.log(this.get('sharePhone'));
-      alert("TODO: Send Text Messages!");
+      var user = this.session.isAuthenticated ? 'User @' + this.session.currentUser.nickname : "Someone";
+      var data = {
+        recNumber: '+1' + this.get('sharePhone').split('-').join(''),
+        messageBody: user + " has shared this Safemeet with you!: " + window.location.href
+      };
+      this.set('sharePhone', 'Sending...');
+      var _this = this;
+      ajax({
+        type: "POST",
+        url: "https://frozen-headland-1730.herokuapp.com/locations/sms",
+        data: data
+      }).then(function(response) { 
+        if (response.type === "Success") {
+          _this.set('sharePhone', 'Success!');
+        } else {
+          _this.set('sharePhone', 'Error!');
+          alert("Message failed to send - check console for error hints!");
+        }
+      }).finally(function() {
+          setTimeout(function() { _this.set('sharePhone', ''); }, 4000);
+      });
     }
   }
 });

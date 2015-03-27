@@ -2,25 +2,18 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(params) {
-    //if (!params.range) { params.range = 30; }
-    //console.log(params.range);
     var self = this;
     var coords = {
       latitude: +params.lat,
       longitude: +params.long
     };
-    return this.parse.findAllByDistance('Location', coords, params.range)
-    .then(function(locs) {
-      locs.forEach(function(loc, idx) {
-        loc.pos = idx;
-        loc.distance = self.geolocator.distanceBetween(coords, loc.loc);  
-      });
-      console.log(locs); 
+    return this.store.findAllByDistance('rails', 'location', coords, params.range)
+    .then(function(data) {  
+      //console.log(data);
       return {
         coords: coords,
-        nearbyLocations : locs
+        nearbyLocations: data
       };
-
     },
     function(err) {
       console.log("ERR!");
@@ -32,7 +25,7 @@ export default Ember.Route.extend({
     });
   },
   setupController: function(controller, model) {
-    console.log(model);
+    //console.log(model);
     controller.loc.latitude = model.coords.latitude;
     controller.loc.longitude = model.coords.longitude;
     controller.nearbyLocations = model.nearbyLocations;
