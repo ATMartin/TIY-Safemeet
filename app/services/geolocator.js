@@ -35,7 +35,6 @@ export default Ember.Service.extend({
     });
   },
   getCurrentZip: function(context, target) {
-    //alert('Not yet implemented!');
     var geocoder = new window.google.maps.Geocoder();
     var latlng;
     return this.getLoc().then(function(coords) {

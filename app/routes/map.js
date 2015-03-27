@@ -2,14 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(params) {
-    //if (!params.range) { params.range = 30; }
-    //console.log(params.range);
     var self = this;
     var coords = {
       latitude: +params.lat,
       longitude: +params.long
     };
-    return this.parse.findAllByDistance('Location', coords, params.range)
+    return this.store.findAllByDistance('rails', 'location', coords, params.range)
+    /*
     .then(function(locs) {
       locs.forEach(function(loc, idx) {
         loc.pos = idx;
@@ -20,7 +19,13 @@ export default Ember.Route.extend({
         coords: coords,
         nearbyLocations : locs
       };
-
+    */
+    .then(function(data) {  
+      console.log(data);
+      return {
+        coords: coords,
+        nearbyLocations: data
+      };
     },
     function(err) {
       console.log("ERR!");

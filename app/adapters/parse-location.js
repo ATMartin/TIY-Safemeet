@@ -1,8 +1,6 @@
 import Ember from "ember";
 import ajax from "ic-ajax";
-//import ApplicationAdapter from './application';
 
-//export default ApplicationAdapter.extend({
 export default Ember.Object.extend({
   find: function(parseClass, id) {
     return ajax("https://api.parse.com/1/classes/" + parseClass + "/" + id)
