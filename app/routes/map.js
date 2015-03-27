@@ -9,7 +9,7 @@ export default Ember.Route.extend({
     };
     return this.store.findAllByDistance('rails', 'location', coords, params.range)
     .then(function(data) {  
-      console.log(data);
+      //console.log(data);
       return {
         coords: coords,
         nearbyLocations: data
@@ -25,7 +25,7 @@ export default Ember.Route.extend({
     });
   },
   setupController: function(controller, model) {
-    console.log(model);
+    //console.log(model);
     controller.loc.latitude = model.coords.latitude;
     controller.loc.longitude = model.coords.longitude;
     controller.nearbyLocations = model.nearbyLocations;

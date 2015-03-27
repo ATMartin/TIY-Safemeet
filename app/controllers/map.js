@@ -23,7 +23,6 @@ export default Ember.Controller.extend({
       
       if (loc) {
         this.geolocator.getLocFromAddress(loc).then(function(data) {
-          console.log(data);
           var coords = data[0].geometry.location;
           self.transitionToRoute('/map/' + coords.k + '/' + coords.D + '/' + range);  
         });  
