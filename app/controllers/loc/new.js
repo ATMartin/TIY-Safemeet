@@ -18,6 +18,21 @@ export default Ember.Controller.extend({
   marker: {
     setMap: function() {}  
   },
+  reset: function() {
+    this.set('newLoc', {
+      name: "",
+      description: "",
+      address: null,
+      feature24hr: false,
+      featureSeating: false,
+      featurePower: false,
+      loc: {
+        __type: "GeoPoint",
+        latitude: 34,
+        longitude: -84
+      }
+    });
+  },
   actions: {
     updateLocWithMarker: function(latLng, map) {
       this.set('newLoc.loc.latitude', latLng.k);
@@ -33,10 +48,9 @@ export default Ember.Controller.extend({
       var self = this;
       console.log(this.get('newLoc'));
       this.store.push('rails', 'location', this.get('newLoc')).then(function(loc) {
-        //self.store.find('rails', 'location', data.id).then(function(loc) {
-          console.log(loc);
-          self.transitionToRoute('loc.view', loc);    
-        //});
+        self.reset();
+        console.log(loc);
+        self.transitionToRoute('loc.view', loc);    
       });
     }
   }

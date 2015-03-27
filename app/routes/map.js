@@ -8,18 +8,6 @@ export default Ember.Route.extend({
       longitude: +params.long
     };
     return this.store.findAllByDistance('rails', 'location', coords, params.range)
-    /*
-    .then(function(locs) {
-      locs.forEach(function(loc, idx) {
-        loc.pos = idx;
-        loc.distance = self.geolocator.distanceBetween(coords, loc.loc);  
-      });
-      console.log(locs); 
-      return {
-        coords: coords,
-        nearbyLocations : locs
-      };
-    */
     .then(function(data) {  
       console.log(data);
       return {
